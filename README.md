@@ -3,7 +3,7 @@
 KB Grisby: Task Manager. Make sure tasks are clearly defined, talk with group members to agree on deadlines, make sure group is communicating well with each other, monitor progress, promote collaboration and make sure our goals are met.
 
 
-Riley Skief: Client Interfacer
+Riley Skief: Client Interfacer. I will communicate with our client to schedule meetings, as well as ensure we create (to the best of our ability) exactly what they envision the app to consist of. I will encourage consistent work to be done so our client can follow along with our progress.
 
 
 Jack Smith: Unit Tester
