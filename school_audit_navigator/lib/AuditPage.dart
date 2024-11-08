@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:school_audit_navigator/DetailsPage.dart';
 
 class AuditPage extends StatefulWidget {
   const AuditPage({super.key});
@@ -48,12 +49,23 @@ class _AuditPageState extends State<AuditPage> {
           )),
         const Spacer(),
         //idk how to add some padding so it's not flush against the corner of the screen
-        const Align(
-          alignment: Alignment.bottomLeft, 
+        Align(
+          alignment: Alignment.bottomRight, 
           child: 
-          FloatingActionButton(
-            onPressed: null,
-            child: Text('Back')
+          TextButton(
+            child: const Text("More Info"),
+            onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Detailspage(
+              )
+            )
+          );
+        }
+            
+            
+            
           ))
         
       ],),
