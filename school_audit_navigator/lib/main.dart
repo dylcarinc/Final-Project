@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:school_audit_navigator/auditPage.dart';
 import 'api.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+      home: const AuditPage(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+/*class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -126,3 +131,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
