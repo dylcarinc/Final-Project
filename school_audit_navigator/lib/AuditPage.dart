@@ -9,6 +9,7 @@ class AuditPage extends StatefulWidget {
 }
 
 class _AuditPageState extends State<AuditPage> {
+  //test data, will be replaced with data from api
   Map<String, double> dataMap = {
     "Test 1": 5,
     "Test 2": 4,
