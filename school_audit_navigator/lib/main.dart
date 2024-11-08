@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:school_audit_navigator/ResultsPage.dart';
 import 'package:school_audit_navigator/auditPage.dart';
 import 'api.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: const AuditPage(),
+      home: const ResultsPage(),
     ),
   );
 }
