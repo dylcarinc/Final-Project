@@ -22,7 +22,7 @@ void getCollegeYear(String name, int year) async{
   print('Response body: ${response.body}');
 }
 void getCollegeInfo(String id) async{
-  var url = Uri.https('api-staging.fac.gov', '/federal_awards',{'General.report_id':'$id'});
+  var url = Uri.https('api-staging.fac.gov', '/federal_awards',{'General.report_id':id});
   var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
   print('Response status: ${response.statusCode}');
   print('Response body: ${response.body}');
