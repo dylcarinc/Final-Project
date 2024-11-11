@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:school_audit_navigator/DetailsPage.dart';
 import 'package:school_audit_navigator/ResultsPage.dart';
 import 'package:school_audit_navigator/auditPage.dart';
 import 'api.dart';
@@ -39,25 +40,32 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
 
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(decoration: InputDecoration(
+            const TextField(decoration: InputDecoration(
           labelText: 'Search by Name',
           border: OutlineInputBorder(),
           prefixIcon: Icon(Icons.search),
         ),),
-            Text('-OR-',),
-          TextField(decoration: InputDecoration(
+            const Text('-OR-',),
+          const TextField(decoration: InputDecoration(
           labelText: 'Search By State',
           border: OutlineInputBorder(),
           prefixIcon: Icon(Icons.search),
         ),),
           FloatingActionButton(
-          key: Key("Go"),
-          onPressed: AuditPage.new,
-          child: Text('Go')
+          onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ResultsPage(
+              )
+            )
+          );
+        },
+          child: const Text('Go')
         ),
           ],
         ),
