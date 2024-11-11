@@ -51,7 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
           border: OutlineInputBorder(),
           prefixIcon: Icon(Icons.search),
         ),),
-            const Text('-OR-',),
+        
+          SizedBox(height: 40.0,),
+          const Text('-OR-',),
+          SizedBox(height: 40.0),
+          const Text('Search by State'),
+          SizedBox(height: 20,),
           DropdownButton<States>(
             items: States.values.map((States classType) {
             return DropdownMenuItem<States>(
@@ -64,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
         ),
+        SizedBox(height: 20,),
           FloatingActionButton(
           onPressed: () async {
           await Navigator.push(
