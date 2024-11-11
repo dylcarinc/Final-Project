@@ -15,7 +15,7 @@ class _DetailsPageState extends State<Detailspage> {
     return Scaffold( 
       appBar: AppBar(
         title: const Text('Federal Spending on'),
-        backgroundColor: Colors.red[300],
+        backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
       body: const Column(

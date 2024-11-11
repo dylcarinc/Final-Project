@@ -23,7 +23,7 @@ class _AuditPageState extends State<AuditPage> {
     return Scaffold( 
       appBar: AppBar(
         title: const Text('Hendrix College'),
-        backgroundColor: Colors.red[300],
+        backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
       body: Column(

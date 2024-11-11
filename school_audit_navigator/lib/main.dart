@@ -11,7 +11,7 @@ void main() {
     MaterialApp(
       home: const MyHomePage(title: "School Audit Navigator"),
       theme: ThemeData(  
-        scaffoldBackgroundColor: Colors.red[100],
+        scaffoldBackgroundColor: const Color.fromARGB(255, 186, 189, 196),
       )
     ),
   );
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.red[300],
+        backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         title: Text(widget.title),
       ),
 
