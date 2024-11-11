@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/DetailsPage.dart';
 import 'package:school_audit_navigator/ResultsPage.dart';
 import 'package:school_audit_navigator/auditPage.dart';
-import 'api.dart';
-import 'package:school_audit_navigator/widgets/dialog.dart';
 
 void main() {
   runApp(
