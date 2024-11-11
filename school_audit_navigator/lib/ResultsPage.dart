@@ -17,9 +17,10 @@ class _ResultsPageState extends State<ResultsPage> {
         backgroundColor: Colors.red[300],
         centerTitle: true,
       ),
-
-      //Placeholder button: should be in list view of buttons for each audit found
-      floatingActionButton: FloatingActionButton(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        children:[
+      FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
             context,
@@ -30,6 +31,7 @@ class _ResultsPageState extends State<ResultsPage> {
             ),
           );
       },
-    ));
+      child: Text('01/23/2024 - Hendrix College')
+    )]));
   }
 }

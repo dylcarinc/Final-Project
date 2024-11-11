@@ -22,17 +22,17 @@ class _AuditPageState extends State<AuditPage> {
   Widget build(BuildContext context) {
     return Scaffold( 
       appBar: AppBar(
-        title: const Text('Name Of Institution'),
+        title: const Text('Hendrix College'),
         backgroundColor: Colors.red[300],
         centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        const Text('FAC Acceptance Date:'),
-        const Text('Total Federal Expenditure:'),
-        const Text('Auditee:'),
-        const Text('Auditor:'),
+        const Text('FAC Acceptance Date: 01/23/2024'),
+        const Text('Total Federal Expenditure: 7,772,859'),
+        const Text('Auditee: Shawn Mathis'),
+        const Text('Auditor: Corey Jennings'),
         const SizedBox(height: 100),
         const Center(child: Text('Funding Categories')),
         const Spacer(),
