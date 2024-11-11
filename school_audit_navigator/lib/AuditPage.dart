@@ -23,6 +23,7 @@ class _AuditPageState extends State<AuditPage> {
     return Scaffold( 
       appBar: AppBar(
         title: const Text('Name Of Institution'),
+        backgroundColor: Colors.red[300],
         centerTitle: true,
       ),
       body: Column(
