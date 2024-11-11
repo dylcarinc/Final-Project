@@ -22,7 +22,13 @@ class _DetailsPageState extends State<Detailspage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.0,),
-          Text("Total Expenditure: \$7,772,859")
+          Text("Total Expenditure: \$7,772,859"),
+          SizedBox(height: 20.0,),
+          Text("\$1,120,000 - Specific Instance"),
+          SizedBox(height: 10.0,),
+          Text("\$960,400 - Specific Instance"),
+          SizedBox(height: 10.0,),
+          Text("\$610,530 - Specific Instance")
         ])
   );
   }
