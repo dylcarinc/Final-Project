@@ -21,7 +21,8 @@ class _DetailsPageState extends State<Detailspage> {
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Total Expenditure:")
+          SizedBox(height: 10.0,),
+          Text("Total Expenditure: \$7,772,859")
         ])
   );
   }
