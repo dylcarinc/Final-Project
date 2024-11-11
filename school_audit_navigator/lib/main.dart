@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/DetailsPage.dart';
 import 'package:school_audit_navigator/ResultsPage.dart';
 import 'package:school_audit_navigator/auditPage.dart';
+import 'package:school_audit_navigator/objects/states.dart';
 import 'api.dart';
 import 'package:school_audit_navigator/widgets/dialog.dart';
 
@@ -30,6 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  States stateValue = States.al;
   @override
   Widget build(BuildContext context) {
     
@@ -50,11 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
           prefixIcon: Icon(Icons.search),
         ),),
             const Text('-OR-',),
-          const TextField(decoration: InputDecoration(
-          labelText: 'Search By State',
-          border: OutlineInputBorder(),
-          prefixIcon: Icon(Icons.search),
-        ),),
+          DropdownButton<States>(
+            items: States.values.map((States classType) {
+            return DropdownMenuItem<States>(
+                value: classType, child: Text(classType.state));
+          }).toList(),
+            value: stateValue,
+          onChanged: (States? newValue) {
+            setState(() {
+              stateValue = newValue!;
+            });
+          },
+        ),
           FloatingActionButton(
           onPressed: () async {
           await Navigator.push(
@@ -67,9 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
           child: const Text('Go')
         ),
-          ],
-        ),
+        ]
       ),
+      )
     );
   }
 }
