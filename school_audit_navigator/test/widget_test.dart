@@ -11,8 +11,36 @@ import 'package:school_audit_navigator/main.dart';
 import 'package:school_audit_navigator/ResultsPage.dart'; 
 import 'package:school_audit_navigator/AuditPage.dart'; 
 import 'package:pie_chart/pie_chart.dart';
-
+import 'package:school_audit_navigator/DetailsPage.dart';
 void main() {
+  testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
+    // Build the app with MyHomePage.
+    await tester.pumpWidget(MaterialApp(
+      home: MyHomePage(title: 'School Audit Navigator'),
+    ));
+
+    // Tap the 'Go' button.
+    await tester.tap(find.text('Go'));
+    await tester.pumpAndSettle();
+
+    // Verify that ResultsPage is displayed by checking for its AppBar title.
+    expect(find.text('Audits Found'), findsOneWidget);
+  });
+
+testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
+  // Build the app with MyHomePage.
+  await tester.pumpWidget(MaterialApp(
+    home: MyHomePage(title: 'School Audit Navigator'),
+  ));
+
+  // Tap the 'Go' button.
+  await tester.tap(find.text('Go'));
+  await tester.pumpAndSettle();
+
+  // Verify that ResultsPage is displayed by checking for its AppBar title.
+  expect(find.text('Audits Found'), findsOneWidget);
+});
+
   //TEST RESULT
   testWidgets('ResultsPage displays audits and navigates to AuditPage', (WidgetTester tester) async {
     // Build ResultsPage widget.
@@ -64,5 +92,20 @@ void main() {
     expect(find.text('Federal Spending on'), findsOneWidget);
   });
 
+  testWidgets('DetailsPage displays expenditure details', (WidgetTester tester) async {
+    // Build DetailsPage widget.
+    await tester.pumpWidget(MaterialApp(
+      home: Detailspage(),
+    ));
+
+    // Verify that the AppBar title is displayed.
+    expect(find.text('Federal Spending on'), findsOneWidget);
+
+    // Verify that expenditure details are displayed.
+    expect(find.text('Total Expenditure: \$7,772,859'), findsOneWidget);
+    expect(find.text('\$1,120,000 - Specific Instance'), findsOneWidget);
+    expect(find.text('\$960,400 - Specific Instance'), findsOneWidget);
+    expect(find.text('\$610,530 - Specific Instance'), findsOneWidget);
+  });
 
 }
