@@ -11,7 +11,7 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Audits Found'),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
@@ -19,19 +19,20 @@ class _ResultsPageState extends State<ResultsPage> {
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
-        children:[
-      FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuditPage(
-                
-              ),
-            ),
-          );
-      },
-      child: Text('01/23/2024 - Hendrix College')
-    )]));
+        children: [
+          ListTile(
+            title: Text('01/23/2024 - Hendrix College'),
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AuditPage(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
