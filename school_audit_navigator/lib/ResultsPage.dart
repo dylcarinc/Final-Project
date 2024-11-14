@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/AuditPage.dart';
 import 'package:school_audit_navigator/api.dart';
+import 'package:school_audit_navigator/objects/states.dart';
 
 class ResultsPage extends StatefulWidget {
-  const ResultsPage({super.key});
+  final States selectedState;
+  const ResultsPage({required this.selectedState,super.key});
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -12,6 +14,9 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
+    String state= widget.selectedState.toString();
+    String stateAbrev = state.substring(state.indexOf('.')+1, state.length).toUpperCase();
+    print(stateAbrev);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Audits Found'),
@@ -19,7 +24,7 @@ class _ResultsPageState extends State<ResultsPage> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-      future: searchColleges(true, 'ar',), 
+      future: searchColleges(true, '$stateAbrev'),
       builder: (context, AsyncSnapshot snapshot){
         final List<Map<String, dynamic>> colleges = snapshot.data ?? [];
          if (!snapshot.hasData) {

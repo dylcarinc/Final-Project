@@ -76,8 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ResultsPage(
-              )
+              builder: (context) => ResultsPage  (selectedState: stateValue,)
             )
           );
         },

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 Future<List<Map<String, dynamic>>> searchColleges(bool isHigerED, String state) async {
   Uri url;
   if (isHigerED){
-    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year&auditee_state=eq.AR&auditee_name=ilike(any).{*College*,*University*}");
+    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year&auditee_state=eq.$state&auditee_name=ilike(any).{*College*,*University*}");
   }
   else{
   url =  Uri.parse("https://api-staging.fac.gov/general?auditee_state=eq.AR&auditee_name=fts.school");
@@ -17,7 +17,7 @@ Future<List<Map<String, dynamic>>> searchColleges(bool isHigerED, String state) 
   //List valueMap = jsonDecode(response.body.trim());
   //print (valueMap.elementAt(0));
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
-  print(data.elementAt(1)['auditee_name']);
+  //print(data.elementAt(1)['auditee_name']);
   return data;
 
 }
