@@ -12,7 +12,7 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Audits Found'),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
