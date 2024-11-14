@@ -7,6 +7,7 @@ import 'api.dart';
 import 'package:school_audit_navigator/widgets/dialog.dart';
 
 void main() {
+  searchColleges(true, 'ar');
   runApp(
     MaterialApp(
       home: const MyHomePage(title: "School Audit Navigator"),
@@ -52,11 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
           prefixIcon: Icon(Icons.search),
         ),),
         
-          SizedBox(height: 40.0,),
+          const SizedBox(height: 40.0,),
           const Text('-OR-',),
-          SizedBox(height: 40.0),
+          const SizedBox(height: 40.0),
           const Text('Search by State'),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           DropdownButton<States>(
             items: States.values.map((States classType) {
             return DropdownMenuItem<States>(
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
           FloatingActionButton(
           onPressed: () async {
           await Navigator.push(

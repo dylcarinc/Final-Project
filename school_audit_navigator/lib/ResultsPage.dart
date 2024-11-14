@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/AuditPage.dart';
+import 'package:school_audit_navigator/api.dart';
 
 class ResultsPage extends StatefulWidget {
   const ResultsPage({super.key});
@@ -17,10 +18,26 @@ class _ResultsPageState extends State<ResultsPage> {
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        children:[
-      FloatingActionButton(
+      body: FutureBuilder(
+      future: searchColleges(true, 'ar',), 
+      builder: (context, AsyncSnapshot snapshot){
+        final List<Map<String, dynamic>> colleges = snapshot.data ?? [];
+         if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+         }
+         else{ 
+        return Container(
+          child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index){
+          return ListTile(
+          trailing:  Text(colleges.elementAt(index)['audit_year']),
+          title: Text(colleges.elementAt(index)['auditee_name'])
+        );})
+         );
+      }}),
+      //Placeholder button: should be in list view of buttons for each audit found
+      floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
             context,
@@ -31,7 +48,7 @@ class _ResultsPageState extends State<ResultsPage> {
             ),
           );
       },
-      child: Text('01/23/2024 - Hendrix College')
-    )]));
+      child: const Text('01/23/2024 - Hendrix College')
+    ));
   }
 }
