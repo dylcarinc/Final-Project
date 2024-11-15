@@ -24,11 +24,11 @@ class _ResultsPageState extends State<ResultsPage> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-      future: searchColleges(true, '$stateAbrev'),
+      future: searchColleges(true, stateAbrev),
       builder: (context, AsyncSnapshot snapshot){
         final List<Map<String, dynamic>> colleges = snapshot.data ?? [];
          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
          }
          else{ 
         return Container(

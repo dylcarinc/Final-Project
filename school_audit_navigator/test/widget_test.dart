@@ -15,7 +15,7 @@ import 'package:school_audit_navigator/DetailsPage.dart';
 void main() {
   testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
     // Build the app with MyHomePage.
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: MyHomePage(title: 'School Audit Navigator'),
     ));
 
@@ -29,7 +29,7 @@ void main() {
 
 testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
   // Build the app with MyHomePage.
-  await tester.pumpWidget(MaterialApp(
+  await tester.pumpWidget(const MaterialApp(
     home: MyHomePage(title: 'School Audit Navigator'),
   ));
 
@@ -44,7 +44,7 @@ testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester t
   //TEST RESULT
   testWidgets('ResultsPage displays audits and navigates to AuditPage', (WidgetTester tester) async {
     // Build ResultsPage widget.
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: ResultsPage(),
     ));
 
@@ -65,7 +65,7 @@ testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester t
   //TEST AUDITPAGE
   testWidgets('AuditPage displays audit details and pie chart', (WidgetTester tester) async {
     // Build AuditPage widget.
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: AuditPage(),
     ));
 
@@ -94,7 +94,7 @@ testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester t
 
   testWidgets('DetailsPage displays expenditure details', (WidgetTester tester) async {
     // Build DetailsPage widget.
-    await tester.pumpWidget(MaterialApp(
+    await tester.pumpWidget(const MaterialApp(
       home: Detailspage(),
     ));
 

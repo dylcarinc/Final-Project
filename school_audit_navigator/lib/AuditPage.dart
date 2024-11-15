@@ -29,7 +29,13 @@ class _AuditPageState extends State<AuditPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        const Text('FAC Acceptance Date: 01/23/2024'),
+          const Padding(padding: EdgeInsets.all(16.0), 
+          child: Text('FAC Acceptance Date: 01/23/2024'),
+          
+          
+          
+          ),
+        
         const Text('Total Federal Expenditure: \$7,772,859'),
         const Text('Auditee: Shawn Mathis, mathis@hendrix.edu'),
         const Text('Auditor: Corey Jennings, corey.jennings@forvis.com'),
