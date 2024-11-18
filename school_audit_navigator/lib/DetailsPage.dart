@@ -21,14 +21,23 @@ class _DetailsPageState extends State<Detailspage> {
       body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10.0,),
-          Text("Total Expenditure: \$7,772,859"),
-          SizedBox(height: 20.0,),
-          Text("\$1,120,000 - Specific Instance"),
-          SizedBox(height: 10.0,),
-          Text("\$960,400 - Specific Instance"),
-          SizedBox(height: 10.0,),
-          Text("\$610,530 - Specific Instance")
+          // SizedBox(height: 10.0,),
+          Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text("Total Expenditure: \$7,772,859"),
+              ),
+          Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text("\$1,120,000 - Specific Instance"),
+              ),
+          Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text("\$960,400 - Specific Instance"),
+              ),
+          Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text("\$610,530 - Specific Instance")
+              ),
         ])
   );
   }
