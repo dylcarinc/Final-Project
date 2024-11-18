@@ -4,8 +4,10 @@ import 'package:school_audit_navigator/api.dart';
 import 'package:school_audit_navigator/objects/states.dart';
 
 class ResultsPage extends StatefulWidget {
-  final States selectedState;
-  const ResultsPage({required this.selectedState,super.key});
+  final States? selectedState;
+  final String? collegeName;
+
+  const ResultsPage({this.selectedState, this.collegeName, Key? key}) : super(key: key);
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -14,9 +16,25 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
-    String state= widget.selectedState.toString();
-    String stateAbrev = state.substring(state.indexOf('.')+1, state.length).toUpperCase();
-    print(stateAbrev);
+    Future<List<Map<String, dynamic>>> futureData;
+
+    if (widget.collegeName != null && widget.collegeName!.isNotEmpty) {
+      futureData = searchColleges(name: widget.collegeName);
+    } else if (widget.selectedState != null) {
+      String state = widget.selectedState.toString();
+      String stateAbrev = state.substring(state.indexOf('.') + 1).toUpperCase();
+      futureData = searchColleges(isHigherED: true, state: stateAbrev);
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('No Search Criteria'),
+        ),
+        body: Center(
+          child: Text('No search criteria provided.'),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Audits Found'),
@@ -24,36 +42,46 @@ class _ResultsPageState extends State<ResultsPage> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-      future: searchColleges(true, stateAbrev),
-      builder: (context, AsyncSnapshot snapshot){
-        final List<Map<String, dynamic>> colleges = snapshot.data ?? [];
-         if (!snapshot.hasData) {
+        future: futureData,
+        builder: (context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
-         }
-         else{ 
-        return Container(
-          child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index){
-          return ListTile(
-          trailing:  Text(colleges.elementAt(index)['audit_year']),
-          title: Text(colleges.elementAt(index)['auditee_name'])
-        );})
-         );
-      }}),
-      //Placeholder button: should be in list view of buttons for each audit found
+          } else {
+            final List<Map<String, dynamic>> colleges = snapshot.data;
+            return ListView.builder(
+              itemCount: colleges.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  trailing: Text(colleges[index]['audit_year'].toString()),
+                  title: Text(colleges[index]['auditee_name']),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuditPage(
+                          // Pass necessary data to AuditPage
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            );
+          }
+        },
+      ),
+      // Keeping the FloatingActionButton as per your request
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AuditPage(
-                
-              ),
+              builder: (context) => const AuditPage(),
             ),
           );
-      },
-      child: const Text('01/23/2024 - Hendrix College')
-    ));
+        },
+        child: const Text('01/23/2024 - Hendrix College'),
+      ),
+    );
   }
 }
