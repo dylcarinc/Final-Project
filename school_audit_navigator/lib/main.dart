@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:school_audit_navigator/ResultsPage.dart';
+import 'package:school_audit_navigator/results_page.dart';
 import 'package:school_audit_navigator/objects/states.dart';
-import 'package:school_audit_navigator/api.dart';
+import 'package:school_audit_navigator/widgets/widgets.dart';
 
 void main() {
   runApp(
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ResultsPage(collegeName: searchText),
+          builder: (context) => results_page(collegeName: searchText),
         ),
       );
     }
@@ -58,14 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            // Removed mainAxisAlignment to allow natural spacing
-            // added padding below
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text("Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state."),
-                // minFontSize: 
-              ),
+              
+              const Paragraph(
+            'Welcome to the Federal Audit Clearinghouse App!\nSearch nationally for a college/university by name, or use the drop down to filter by state.'
+          ),
               const SizedBox(height: 30.0),
               
               // Search by Name Section

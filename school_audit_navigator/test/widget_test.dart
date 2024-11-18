@@ -1,17 +1,10 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:school_audit_navigator/main.dart'; 
-import 'package:school_audit_navigator/ResultsPage.dart'; 
-import 'package:school_audit_navigator/AuditPage.dart'; 
+
+import 'package:school_audit_navigator/audit_page.dart'; 
 import 'package:pie_chart/pie_chart.dart';
-import 'package:school_audit_navigator/DetailsPage.dart';
+import 'package:school_audit_navigator/details_page.dart';
 void main() {
   testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
     // Build the app with MyHomePage.

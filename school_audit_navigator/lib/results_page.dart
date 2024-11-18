@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:school_audit_navigator/AuditPage.dart';
+import 'package:school_audit_navigator/audit_page.dart';
 import 'package:school_audit_navigator/api.dart';
 import 'package:school_audit_navigator/objects/states.dart';
 
@@ -7,7 +7,7 @@ class ResultsPage extends StatefulWidget {
   final States? selectedState;
   final String? collegeName;
 
-  const ResultsPage({this.selectedState, this.collegeName, Key? key}) : super(key: key);
+  const ResultsPage({this.selectedState, this.collegeName, super.key});
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
@@ -27,9 +27,9 @@ class _ResultsPageState extends State<ResultsPage> {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: Text('No Search Criteria'),
+          title: const Text('No Search Criteria'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('No search criteria provided.'),
         ),
       );
@@ -58,7 +58,7 @@ class _ResultsPageState extends State<ResultsPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AuditPage(
+                        builder: (context) => const AuditPage(
                           // Pass necessary data to AuditPage
                         ),
                       ),

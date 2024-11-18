@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:school_audit_navigator/DetailsPage.dart';
+import 'package:school_audit_navigator/details_page.dart';
+import 'package:school_audit_navigator/widgets/widgets.dart';
 
 class AuditPage extends StatefulWidget {
   const AuditPage({super.key});
@@ -29,26 +30,12 @@ class _AuditPageState extends State<AuditPage> {
       body: Column(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(16.0), 
-            child: Text('FAC Acceptance Date: 01/23/2024'), 
-          ),
-          const Padding(
-            padding: EdgeInsets.all(16.0), 
-            child: Text('Total Federal Expenditure: \$7,772,859'), 
-          ),
-          const Padding(
-            padding: EdgeInsets.all(16.0), 
-            child: Text('Auditee: Shawn Mathis, mathis@hendrix.edu'), 
-          ),
-          const Padding(
-            padding: EdgeInsets.all(16.0), 
-            child: Text('Auditor: Corey Jennings, corey.jennings@forvis.com'), 
-          ),
-        
+          const Paragraph(
+            'FAC Acceptance Date: 01/23/2024\nTotal Federal Expenditure: \$7,772,859\nAuditee: Shawn Mathis, mathis@hendrix.edu\nAuditor: Corey Jennings, corey.jennings@forvis.com'
+          ),     
         
         const SizedBox(height: 100),
-        const Center(child: Text('Funding Categories')),
+        const Subtitle('Funding Categories'),
         const Spacer(),
         Center(child: 
         PieChart(
@@ -63,7 +50,6 @@ class _AuditPageState extends State<AuditPage> {
           ),
           )),
         const Spacer(),
-        //idk how to add some padding so it's not flush against the corner of the screen
         Align(
           alignment: Alignment.bottomRight, 
           child: 
