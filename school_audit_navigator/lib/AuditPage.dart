@@ -30,7 +30,8 @@ class _AuditPageState extends State<AuditPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(padding: EdgeInsets.all(16.0), 
-          child: Text('FAC Acceptance Date: 01/23/2024'),
+          child: Text('FAC Acceptance Date: 01/23/2024'), 
+          
           
           
           
@@ -69,14 +70,9 @@ class _AuditPageState extends State<AuditPage> {
               )
             )
           );
-        }
-            
-            
-            
+        }   
           ))
-        
       ],),
-      
     );
   }
 }

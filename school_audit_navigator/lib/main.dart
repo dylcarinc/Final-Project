@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text("Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state."),
             const TextField(decoration: InputDecoration(
           labelText: 'Search by Name',
           border: OutlineInputBorder(),
