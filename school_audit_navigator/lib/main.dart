@@ -8,7 +8,7 @@ void main() {
     MaterialApp(
       home: const MyHomePage(title: "School Audit Navigator"),
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 186, 189, 196),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
       ),
     ),
   );
@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text("Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state."),
+                // minFontSize: 
               ),
               const SizedBox(height: 30.0),
               
@@ -84,12 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     onPressed: () => _performSearchByName(context),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+                      backgroundColor: const Color.fromARGB(255, 78, 255, 117),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
                     child: const Text(
                       'Search by name',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ],
@@ -122,12 +123,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                     onPressed: () => _performSearchByState(context),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+                      backgroundColor: const Color.fromARGB(255, 78, 255, 117),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
                     child: const Text(
                       'Search by state',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ],
