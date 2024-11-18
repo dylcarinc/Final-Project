@@ -70,18 +70,6 @@ class _ResultsPageState extends State<ResultsPage> {
           }
         },
       ),
-      // Keeping the FloatingActionButton as per your request
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuditPage(),
-            ),
-          );
-        },
-        child: const Text('01/23/2024 - Hendrix College'),
-      ),
     );
   }
 }

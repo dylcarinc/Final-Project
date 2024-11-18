@@ -9,7 +9,7 @@ void main() {
       home: const MyHomePage(title: "School Audit Navigator"),
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 186, 189, 196),
-      )
+      ),
     ),
   );
 }
@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   States stateValue = States.al;
   final TextEditingController _searchController = TextEditingController();
 
-  void _performSearch(BuildContext context) async {
+  void _performSearchByName(BuildContext context) async {
     String searchText = _searchController.text.trim();
     if (searchText.isNotEmpty) {
       await Navigator.push(
@@ -38,6 +38,15 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _performSearchByState(BuildContext context) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultsPage(selectedState: stateValue),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,77 +55,86 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // Removed mainAxisAlignment to allow natural spacing
             children: <Widget>[
               const Text(
                 "Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state.",
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20.0),
-              Row(
+              const SizedBox(height: 30.0),
+              
+              // Search by Name Section
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        labelText: 'Search by Name',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                      onSubmitted: (_) => _performSearch(context),
+                  TextField(
+                    controller: _searchController,
+                    decoration: const InputDecoration(
+                      labelText: 'Search by Name',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.search),
                     ),
+                    onSubmitted: (_) => _performSearchByName(context),
                   ),
-                  const SizedBox(width: 10.0),
+                  const SizedBox(height: 10.0),
                   ElevatedButton(
-                    onPressed: () => _performSearch(context),
+                    onPressed: () => _performSearchByName(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 76, 124, 175),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
-                    child: const Text('Search',
+                    child: const Text(
+                      'Search by name',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
               ),
+
               const SizedBox(height: 40.0),
               const Text('-OR-'),
               const SizedBox(height: 40.0),
-              const Text('Search by State'),
-              const SizedBox(height: 20.0),
-              DropdownButton<States>(
-                items: States.values.map((States classType) {
-                  return DropdownMenuItem<States>(
-                    value: classType,
-                    child: Text(classType.state),
-                  );
-                }).toList(),
-                value: stateValue,
-                onChanged: (States? newValue) {
-                  setState(() {
-                    stateValue = newValue!;
-                  });
-                },
-              ),
-              const SizedBox(height: 20.0),
-              FloatingActionButton(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResultsPage(selectedState: stateValue),
+
+              // Search by State Section
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  DropdownButton<States>(
+                    isExpanded: true,
+                    items: States.values.map((States state) {
+                      return DropdownMenuItem<States>(
+                        value: state,
+                        child: Text(state.state),
+                      );
+                    }).toList(),
+                    value: stateValue,
+                    onChanged: (States? newValue) {
+                      setState(() {
+                        stateValue = newValue!;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 10.0),
+                  ElevatedButton(
+                    onPressed: () => _performSearchByState(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
-                  );
-                },
-                child: const Text('Go')
+                    child: const Text(
+                      'Search by state',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
-            ]
+            ],
           ),
         ),
-      )
+      ),
     );
   }
 }
