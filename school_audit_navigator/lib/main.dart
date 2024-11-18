@@ -59,10 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             // Removed mainAxisAlignment to allow natural spacing
+            // added padding below
             children: <Widget>[
-              const Text(
-                "Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state.",
-                textAlign: TextAlign.center,
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text("Welcome to the Federal Audit Clearinghouse App! Search nationally for a high school or university by name or use the drop down to filter by state."),
               ),
               const SizedBox(height: 30.0),
               
