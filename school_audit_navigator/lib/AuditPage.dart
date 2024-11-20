@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:school_audit_navigator/DetailsPage.dart';
+import 'package:school_audit_navigator/api.dart';
 
 class AuditPage extends StatefulWidget {
-  const AuditPage({super.key});
-
+  final String? auditID;
+  const AuditPage({this.auditID, Key? key}) : super(key: key);
   @override
   State<AuditPage> createState() => _AuditPageState();
 }
@@ -20,26 +21,41 @@ class _AuditPageState extends State<AuditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-      appBar: AppBar(
-        title: const Text('Hendrix College'),
+    Future<List<Map<String, dynamic>>> futureData = getCollegeInfo(widget.auditID.toString());
+    return FutureBuilder(
+      future: futureData,
+      builder: (context, AsyncSnapshot snapshot) {
+       if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          else {
+            final List<Map<String, dynamic>> college = snapshot.data;
+            final String acceptDate = college[0]['fac_accepted_date'];
+            final int expend = college[0]['total_amount_expended'];
+            final String auditee = college[0]['auditee_contact_name'];
+            final String auditee_contact = college[0]['auditee_email'];
+            final String auditor = college[0]['auditor_contact_name'];
+            final String auditor_contact = college[0]['auditor_email'];
+            return Scaffold(
+              appBar: AppBar(
+        title: Text(college[0]['auditee_name']),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(padding: EdgeInsets.all(16.0), 
-          child: Text('FAC Acceptance Date: 01/23/2024'), 
+          Padding(padding: EdgeInsets.all(16.0),
+          child: Text("FAC Acceptance Date: $acceptDate"), 
           
           
           
           
           ),
         
-        const Text('Total Federal Expenditure: \$7,772,859'),
-        const Text('Auditee: Shawn Mathis, mathis@hendrix.edu'),
-        const Text('Auditor: Corey Jennings, corey.jennings@forvis.com'),
+         Text('Total Federal Expenditure: \$$expend'),
+         Text('Auditee: $auditee, $auditee_contact'),
+         Text('Auditor: $auditor, $auditor_contact'),
         const SizedBox(height: 100),
         const Center(child: Text('Funding Categories')),
         const Spacer(),
@@ -72,7 +88,10 @@ class _AuditPageState extends State<AuditPage> {
           );
         }   
           ))
-      ],),
-    );
+      ],)
+            );
+
+      }
+  });
   }
 }

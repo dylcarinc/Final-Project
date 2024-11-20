@@ -58,7 +58,7 @@ class _ResultsPageState extends State<ResultsPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AuditPage(
+                        builder: (context) => AuditPage(auditID: colleges[index]['report_id']
                           // Pass necessary data to AuditPage
                         ),
                       ),
