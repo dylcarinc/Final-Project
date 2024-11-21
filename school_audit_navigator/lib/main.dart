@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
       await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => results_page(collegeName: searchText),
+          builder: (context) => ResultsPage(collegeName: searchText),
         ),
       );
     }

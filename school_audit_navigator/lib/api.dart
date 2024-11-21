@@ -29,3 +29,20 @@ Future<List<Map<String, dynamic>>> getCollegeInfo(String id) async {
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
   return data;
 }
+Future<Map<String, double>> getCollegeDataMap(String id) async {
+  var url = Uri.parse("https://api-staging.fac.gov/federal_awards?report_id=eq.$id&select=federal_agency_prefix,amount_expended");
+  var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
+  final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
+  final Map<String, double> dataMap = {};
+  int i = 0;
+  while (i < data.length){
+    if (!dataMap.containsKey(data[i]['federal_agency_prefix'])){
+      dataMap[data[i]['federal_agency_prefix'].toString()] = data [i]['amount_expended'].toDouble();
+    }
+    else{
+      dataMap[data[i]['federal_agency_prefix']] =  dataMap[data[i]['federal_agency_prefix']]! + data[i]['amount_expended'];
+    }
+    i++;
+  }
+  return dataMap;
+}
