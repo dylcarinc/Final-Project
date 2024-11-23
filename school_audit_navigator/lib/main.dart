@@ -59,11 +59,20 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              
-              const Paragraph(
+           
+              const Image(
+                image: AssetImage("assets/fac-gov-logo.jpeg"),
+                height: 100.0,
+                width: 100.0,
+                fit: BoxFit.scaleDown,
+              ),
+              const SizedBox(height: 40.0),
+                 const Paragraph(
             'Welcome to the Federal Audit Clearinghouse App!\nSearch nationally for a college/university by name, or use the drop down to filter by state.'
-          ),
-              const SizedBox(height: 30.0),
+            ),
+              
+            
+              const SizedBox(height: 50.0),
               
               // Search by Name Section
               Column(

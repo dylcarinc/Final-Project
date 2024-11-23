@@ -6,7 +6,7 @@ import 'package:school_audit_navigator/api.dart';
 
 class AuditPage extends StatefulWidget {
   final String? auditID;
-  const AuditPage({this.auditID, Key? key}) : super(key: key);
+  const AuditPage({this.auditID, super.key});
   @override
   State<AuditPage> createState() => _AuditPageState();
 }
@@ -37,9 +37,9 @@ class _AuditPageState extends State<AuditPage> {
             final String acceptDate = college[0]['fac_accepted_date'];
             final int expend = college[0]['total_amount_expended'];
             final String auditee = college[0]['auditee_contact_name'];
-            final String auditee_contact = college[0]['auditee_email'];
+            final String auditeeContact = college[0]['auditee_email'];
             final String auditor = college[0]['auditor_contact_name'];
-            final String auditor_contact = college[0]['auditor_email'];
+            final String auditorContact = college[0]['auditor_email'];
             return Scaffold(
               appBar: AppBar(
         title: Text(college[0]['auditee_name']),
@@ -50,7 +50,7 @@ class _AuditPageState extends State<AuditPage> {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
            Paragraph(
-            'FAC Acceptance Date: $acceptDate\nTotal Federal Expenditure: $expend\nAuditee: $auditee, $auditee_contact\nAuditor: $auditor, $auditor_contact'
+            'FAC Acceptance Date: $acceptDate\nTotal Federal Expenditure: $expend\nAuditee: $auditee, $auditeeContact\nAuditor: $auditor, $auditorContact'
           ),     
         
         const SizedBox(height: 100),

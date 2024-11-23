@@ -50,7 +50,7 @@ class _ResultsPageState extends State<ResultsPage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Text('Sort by: '),
+                const Text('Sort by: '),
                 DropdownButton<String>(
                   value: _selectedFilter,
                   items: <String>['AZ', 'ZA', 'Oldest Year', 'Newest Year']
