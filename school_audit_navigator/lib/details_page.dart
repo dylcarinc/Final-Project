@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:school_audit_navigator/objects/lineGraphData.dart';
+import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
 import 'package:school_audit_navigator/widgets/widgets.dart';
 
 class Detailspage extends StatefulWidget {
@@ -17,13 +19,9 @@ class _DetailsPageState extends State<Detailspage> {
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Paragraph(
-            'Total Expenditure: \$7,772,859\n\$1,120,000 - Specific Instance\n\$960,400 - Specific Instance\n\$610,530 - Specific Instance'
-          ), 
-        ])
+      body: 
+          LineGraphWidget(graphData),
+        
   );
   }
 }
