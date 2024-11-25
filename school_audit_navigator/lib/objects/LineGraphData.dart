@@ -8,6 +8,7 @@ class LineGraphData{
 }
 
 List<LineGraphData> get graphData {
-  final data = <double>[100000, 200000, 150000, 400000, 500000];
+  //turn data into list of total federal expenditure in order of years
+  final data = <double>[100000, 200000, 150000, 400000, 500000, 450000, 600000, 400000, 650000];
   return data.mapIndexed(((index, element) => LineGraphData(x: index.toDouble(), y: element))).toList();
 }
