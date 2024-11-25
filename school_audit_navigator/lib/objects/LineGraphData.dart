@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class LineGraphData{
   final double x;
@@ -7,6 +8,6 @@ class LineGraphData{
 }
 
 List<LineGraphData> get graphData {
-  final data = <double>[10000, 20000, 15000, 40000, 50000];
+  final data = <double>[100000, 200000, 150000, 400000, 500000];
   return data.mapIndexed(((index, element) => LineGraphData(x: index.toDouble(), y: element))).toList();
 }
