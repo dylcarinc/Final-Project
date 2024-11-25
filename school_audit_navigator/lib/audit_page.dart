@@ -42,6 +42,7 @@ class _AuditPageState extends State<AuditPage> {
           final String auditeeContact = college[0]['auditee_email'];
           final String auditor = college[0]['auditor_contact_name'];
           final String auditorContact = college[0]['auditor_email'];
+          final String auditeeEIN = college[0]['auditee_ein'];
 
           return Scaffold(
             appBar: AppBar(
@@ -85,7 +86,7 @@ class _AuditPageState extends State<AuditPage> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Detailspage(),
+                            builder: (context) => Detailspage(auditEIN: auditeeEIN,),
                           ),
                         );
                       },

@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:school_audit_navigator/objects/lineGraphData.dart';
+import 'package:school_audit_navigator/objects/line_graph_data.dart';
 
 class LineGraphWidget extends StatelessWidget {
   final List<LineGraphData> data;
