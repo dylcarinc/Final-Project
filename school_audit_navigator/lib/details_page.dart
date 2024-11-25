@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/objects/line_graph_data.dart';
 import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
-import 'package:school_audit_navigator/widgets/widgets.dart';
 
 class Detailspage extends StatefulWidget {
   final String? auditEIN;

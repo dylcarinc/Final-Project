@@ -5,7 +5,7 @@ import 'package:school_audit_navigator/objects/line_graph_data.dart';
 class LineGraphWidget extends StatelessWidget {
   final List<LineGraphData> data;
   
-  const LineGraphWidget(this.data, {Key?key}) : super(key: key);
+  const LineGraphWidget(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {

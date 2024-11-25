@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 40.0),
                  const Paragraph(
-            'Welcome to the Federal Audit Clearinghouse App!\nSearch nationally for a college/university by name, or use the drop down to filter by state.'
+            'Welcome to the School Audit Navigator App! We use the Federal Audit Clearinghouse website to display data in an easier to read and understand manner\nSearch nationally for a college/university by name, or use the drop down box to filter by state.'
             ),
               
             
