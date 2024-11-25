@@ -59,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-           
               const Image(
                 image: AssetImage("assets/fac-gov-logo.jpeg"),
                 height: 100.0,
@@ -70,10 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  const Paragraph(
             'Welcome to the School Audit Navigator App! We use the Federal Audit Clearinghouse website to display data in an easier to read and understand manner\nSearch nationally for a college/university by name, or use the drop down box to filter by state.'
             ),
-              
-            
               const SizedBox(height: 50.0),
-              
               // Search by Name Section
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -101,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-
+              
               const SizedBox(height: 40.0),
               const Text('-OR-'),
               const SizedBox(height: 40.0),

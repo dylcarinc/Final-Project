@@ -4,7 +4,7 @@ import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
 
 class Detailspage extends StatefulWidget {
   final String? auditEIN;
-  const Detailspage({this.auditEIN, Key? key}) : super(key: key);
+  const Detailspage({this.auditEIN, super.key});
   @override
   State<Detailspage> createState() => _DetailsPageState();
 }

@@ -14,7 +14,7 @@ class LineGraphWidget extends StatelessWidget {
         LineChartBarData(
           spots: data.map((point) => FlSpot(point.x, point.y)).toList(),
           isCurved: false,
-          dotData: FlDotData(show: true),
+          dotData: const FlDotData(show: true),
         ),
       ],
         titlesData: const FlTitlesData(
