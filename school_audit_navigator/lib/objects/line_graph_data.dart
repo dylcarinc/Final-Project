@@ -12,7 +12,6 @@ class LineGraphData{
 Future<List<LineGraphData>>  graphData(String ein) async {
   Map<String, double> dataList = await getOtherYears(ein);
   final data = <LineGraphData>[];
-  int i = 0;
   dataList.forEach((key, value) {
     String k = key;
     data.add(LineGraphData(x: double.parse(k), y: value));
