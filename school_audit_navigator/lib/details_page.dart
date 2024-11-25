@@ -19,8 +19,7 @@ class _DetailsPageState extends State<Detailspage> {
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
-      body: 
-          LineGraphWidget(graphData),
+      body: Center(child: SizedBox(width: 400, height: 500,child:LineGraphWidget(graphData) ,),)
         
   );
   }

@@ -22,15 +22,17 @@ class LineGraphWidget extends StatelessWidget {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
+            reservedSize: 30,
             getTitlesWidget: getTitles,
           )
-        )
-
         ),
-        minY: 0,
-        maxY: 1000000
-      )
-      );
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)
+        ),
+
+      ),
+      minY: 0,
+      maxY: 1000000
+      ));
   }
 }
 
