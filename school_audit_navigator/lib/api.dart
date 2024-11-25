@@ -46,9 +46,15 @@ Future<Map<String, double>> getCollegeDataMap(String id) async {
   }
   return dataMap;
 }
-Future<List<Map<String, dynamic>>> getOtherYears(String ein) async {
+Future<Map<String, double>> getOtherYears(String ein) async {
   var url = Uri.parse("https://api-staging.fac.gov/general?auditee_ein=eq.$ein&select=audit_year,total_amount_expended&order=audit_year.asc");
   var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
-  return data;
+  final Map<String, double> dataMap = {};
+  int i = 0;
+  while(i < data.length){
+    dataMap[data[i]['audit_year'].toString()] = data [i]['total_amount_expended'].toDouble();
+    i ++;
+  }
+  return dataMap;
 }
