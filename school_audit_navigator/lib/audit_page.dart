@@ -181,7 +181,8 @@ class _AuditPageState extends State<AuditPage> {
                     icon: const Icon(Icons.info_outline),
                     label: const Text('More Details'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+                      backgroundColor: const Color.fromARGB(255, 100, 200, 100),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
                         vertical: 12,
