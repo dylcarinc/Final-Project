@@ -45,7 +45,7 @@ class _AuditPageState extends State<AuditPage> {
             
             return Scaffold(
               appBar: AppBar(
-        title: Text(college[0]['auditee_name']),
+        title: const Text('School Audit Navigator'),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
@@ -54,6 +54,7 @@ class _AuditPageState extends State<AuditPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Subtitle(college[0]['auditee_name']),
             Paragraph(
               'FAC Acceptance Date: $acceptDate\n'
               'Total Federal Expenditure: \$${expend.toString()}\n'

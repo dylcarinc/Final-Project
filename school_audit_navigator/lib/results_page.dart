@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/audit_page.dart';
 import 'package:school_audit_navigator/api.dart';
 import 'package:school_audit_navigator/objects/states.dart';
+import 'package:school_audit_navigator/widgets/widgets.dart';
 
 class ResultsPage extends StatefulWidget {
   final States? selectedState;
@@ -39,7 +40,7 @@ class _ResultsPageState extends State<ResultsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Audits Found'),
+        title: const Text('School Audit Navigator'),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
@@ -50,7 +51,8 @@ class _ResultsPageState extends State<ResultsPage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const Text('Sort by: '),
+                const Subtitle('Audits Found'),
+                const Text('         Sort by: '),
                 DropdownButton<String>(
                   value: _selectedFilter,
                   items: <String>['AZ', 'ZA', 'Oldest Year', 'Newest Year']

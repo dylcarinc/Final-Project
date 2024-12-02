@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/objects/line_graph_data.dart';
 import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
+import 'package:school_audit_navigator/widgets/widgets.dart';
 
 class Detailspage extends StatefulWidget {
   final String? auditEIN;
@@ -20,14 +21,22 @@ class _DetailsPageState extends State<Detailspage> {
                 } else {
                   return Scaffold( 
       appBar: AppBar(
-        title: const Text('Federal Spending on'),
+        title: const Text('School Audit Navigator'),
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         centerTitle: true,
       ),
       body: 
-        Center(child: SizedBox(width: 400, height: 500,child:LineGraphWidget(snapshot.data) ,),),
-        
-  );}});
+        Center(
+          child: Column(
+            children: [const Subtitle('Federal Spending Used On:'), 
+          SizedBox(width: 400, height: 500,child:LineGraphWidget(snapshot.data)),])
+           ),
+           );
+
+                 
+  }
+  }
+  );
   }
     }
     
