@@ -40,6 +40,7 @@ dependencies:
   http: ^1.2.2
   pie_chart: ^5.0.0
   fl_chart: ^0.69.2
+  intl: ^0.18.0  # Use the latest version available
 
 dev_dependencies:
   flutter_test:
