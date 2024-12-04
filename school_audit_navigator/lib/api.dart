@@ -6,11 +6,11 @@ Future<List<Map<String, dynamic>>> searchColleges({bool isHigherED = false, Stri
 
   if (name != null && name.isNotEmpty) {
     // Search by college name
-    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id&auditee_name=ilike.%$name%");
+    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id,auditee_ein&auditee_name=ilike.%$name%");
   } else if (state != null) {
     // Search by state
     if (isHigherED) {
-      url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id&auditee_state=eq.$state&auditee_name=ilike(any).{*College*,*University*}");
+      url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id,auditee_ein&auditee_state=eq.$state&auditee_name=ilike(any).{*College*,*University*}");
     } else {
       url = Uri.parse("https://api-staging.fac.gov/general?auditee_state=eq.$state&auditee_name=fts.school");
     }
