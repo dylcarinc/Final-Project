@@ -25,11 +25,11 @@ class _AuditPageState extends State<AuditPage> {
       ]),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (!snapshot.hasData) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   CircularProgressIndicator(),
                   SizedBox(height: 16),
                   Text('Loading audit data...',
@@ -167,32 +167,32 @@ class _AuditPageState extends State<AuditPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton.icon(
-                    onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Detailspage(auditEIN: auditeeEIN),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.info_outline),
-                    label: const Text('More Details'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 100, 200, 100),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.centerRight,
+                //   child: ElevatedButton.icon(
+                //     onPressed: () async {
+                //       await Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => Detailspage(auditEIN: auditeeEIN),
+                //         ),
+                //       );
+                //     },
+                //     icon: const Icon(Icons.info_outline),
+                //     label: const Text('More Details'),
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: const Color.fromARGB(255, 100, 200, 100),
+                //       foregroundColor: Colors.white,
+                //       padding: const EdgeInsets.symmetric(
+                //         horizontal: 24,
+                //         vertical: 12,
+                //       ),
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(8),
+                //       ),
+                    // ),
+                //   ),
+                // ),
               ],
             ),
           ),
