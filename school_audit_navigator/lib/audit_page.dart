@@ -4,10 +4,13 @@ import 'package:school_audit_navigator/details_page.dart';
 import 'package:school_audit_navigator/widgets/widgets.dart';
 import 'package:school_audit_navigator/api.dart';
 import 'package:intl/intl.dart';
+import 'package:school_audit_navigator/objects/line_graph_data.dart';
+import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
 
 class AuditPage extends StatefulWidget {
+  final String? auditEIN;
   final String? auditID;
-  const AuditPage({this.auditID, super.key});
+  const AuditPage({this.auditEIN,this.auditID, super.key});
 
   @override
   State<AuditPage> createState() => _AuditPageState();
@@ -18,10 +21,12 @@ class _AuditPageState extends State<AuditPage> {
   
   @override
   Widget build(BuildContext context) {
+    print(widget.auditID.toString());
     return FutureBuilder(
       future: Future.wait([
         getCollegeInfo(widget.auditID.toString()),
-        getCollegeDataMap(widget.auditID.toString())
+        getCollegeDataMap(widget.auditID.toString()),
+        graphData(widget.auditEIN.toString())
       ]),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (!snapshot.hasData) {
@@ -43,7 +48,6 @@ class _AuditPageState extends State<AuditPage> {
             ),
           );
         }
-
         final List<Map<String, dynamic>> college = snapshot.data![0];
         final Map<String, double> values = snapshot.data![1];
         final collegeData = college[0];
@@ -161,6 +165,31 @@ class _AuditPageState extends State<AuditPage> {
                               decimalPlaces: 1,
                             ),
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Expenditures over time',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Center(
+                          child: SizedBox(width: 400, height: 500,child:LineGraphWidget(snapshot.data![2]))
                         ),
                       ],
                     ),

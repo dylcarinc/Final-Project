@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:school_audit_navigator/objects/agencies.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Map<String, dynamic>>> searchColleges({bool isHigherED = false, String? state, String? name}) async {
@@ -6,11 +7,11 @@ Future<List<Map<String, dynamic>>> searchColleges({bool isHigherED = false, Stri
 
   if (name != null && name.isNotEmpty) {
     // Search by college name
-    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id&auditee_name=ilike.%$name%");
+    url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id,auditee_ein&auditee_name=ilike.%$name%");
   } else if (state != null) {
     // Search by state
     if (isHigherED) {
-      url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id&auditee_state=eq.$state&auditee_name=ilike(any).{*College*,*University*}");
+      url = Uri.parse("https://api-staging.fac.gov/general?select=auditee_name,audit_year,report_id,auditee_ein&auditee_state=eq.$state&auditee_name=ilike(any).{*College*,*University*}");
     } else {
       url = Uri.parse("https://api-staging.fac.gov/general?auditee_state=eq.$state&auditee_name=fts.school");
     }
@@ -36,11 +37,14 @@ Future<Map<String, double>> getCollegeDataMap(String id) async {
   final Map<String, double> dataMap = {};
   int i = 0;
   while (i < data.length){
-    if (!dataMap.containsKey(data[i]['federal_agency_prefix'])){
-      dataMap[data[i]['federal_agency_prefix'].toString()] = data [i]['amount_expended'].toDouble();
+    String agencyPrefix = data[i]['federal_agency_prefix'];
+    int newPrefix = int.parse(agencyPrefix);
+    String agencyName = agencies[newPrefix] ?? "";
+    if (!dataMap.containsKey(agencyName)){
+      dataMap[agencyName] = data [i]['amount_expended'].toDouble();
     }
     else{
-      dataMap[data[i]['federal_agency_prefix']] =  dataMap[data[i]['federal_agency_prefix']]! + data[i]['amount_expended'];
+      dataMap[agencyName] =  dataMap[agencyName]! + data[i]['amount_expended'];
     }
     i++;
   }

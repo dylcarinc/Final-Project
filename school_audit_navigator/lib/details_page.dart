@@ -13,6 +13,7 @@ class Detailspage extends StatefulWidget {
 class _DetailsPageState extends State<Detailspage> {
   @override
   Widget build(BuildContext context) {
+    print(widget.auditEIN.toString());
     return FutureBuilder(future: graphData(widget.auditEIN.toString()),
      builder: (context, AsyncSnapshot snapshot){
 

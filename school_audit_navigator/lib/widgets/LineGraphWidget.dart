@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:school_audit_navigator/objects/line_graph_data.dart';
@@ -5,8 +7,29 @@ import 'package:school_audit_navigator/objects/line_graph_data.dart';
 class LineGraphWidget extends StatelessWidget {
   final List<LineGraphData> data;
   
-  const LineGraphWidget(this.data, {super.key});
-
+  const LineGraphWidget(this.data, {Key?key}) : super(key: key);
+  double getMax(List<LineGraphData> data){
+    int i =0;
+    double max = 0;
+    while (i < data.length){
+      if (data.elementAt(i).y > max){
+        max = data.elementAt(i).y;
+      }
+      i++;
+    }
+    return max;
+  }
+  double getMin(List<LineGraphData> data){
+    int i =0;
+    double min = double.maxFinite;
+    while (i < data.length){
+      if (data.elementAt(i).y < min){
+        min = data.elementAt(i).y;
+      }
+      i++;
+    }
+    return min;
+  }
   @override
   Widget build(BuildContext context) {
     return LineChart(LineChartData(
@@ -29,8 +52,8 @@ class LineGraphWidget extends StatelessWidget {
         topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)
         ),
         ),
-        minY: 1000000,
-        maxY: 300000000  
+        minY: getMin(data) * .8,
+        maxY: getMax(data) * 1.2
       )
       );
   }
