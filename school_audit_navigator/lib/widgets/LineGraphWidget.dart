@@ -37,10 +37,10 @@ class LineGraphWidget extends StatelessWidget {
         LineChartBarData(
           spots: data.map((point) => FlSpot(point.x, point.y)).toList(),
           isCurved: false,
-          dotData: const FlDotData(show: true),
+          dotData: FlDotData(show: true),
         ),
       ],
-        titlesData: const FlTitlesData(
+      titlesData: const FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -57,38 +57,39 @@ class LineGraphWidget extends StatelessWidget {
       )
       );
   }
-  }
-  Widget getTitles(double value, TitleMeta meta){
+}
+
+Widget getTitles(double value, TitleMeta meta){
   Widget text;
   switch (value.toInt()){
-    case 2016:
+    case 0:
     text = const Text('2016');
     break;
-    case 2017:
+    case 1:
     text = const Text('2017');
     break;
-    case 2018:
+    case 2:
     text = const Text('2018');
     break;
-    case 2019:
+    case 3:
     text = const Text('2019');
     break;
-    case 2020:
+    case 4:
     text = const Text('2020');
     break;
-    case 2021:
+    case 5:
     text = const Text('2021');
     break;
-    case 2022:
+    case 6:
     text = const Text('2022');
     break;
-    case 2023:
+    case 7:
     text = const Text('2023');
     break;
-    case 2024:
+    case 8:
     text = const Text('2024');
     break;
-    case 2025:
+    case 9:
     text = const Text('2025');
     break;
     default:
