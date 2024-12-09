@@ -158,7 +158,7 @@ class _AuditPageState extends State<AuditPage> {
                             dataMap: values,
                             chartRadius: MediaQuery.of(context).size.width / 1.7,
                             legendOptions: const LegendOptions(
-                              legendPosition: LegendPosition.right
+                              legendPosition: LegendPosition.bottom
                             ),
                             chartValuesOptions: const ChartValuesOptions(
                               showChartValuesInPercentage: true,
