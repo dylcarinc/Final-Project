@@ -52,7 +52,7 @@ class LineGraphWidget extends StatelessWidget {
         topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)
         ),
         ),
-        minY: getMin(data) * .8,
+        minY: 500000,
         maxY: getMax(data) * 1.2
       )
       );
@@ -62,34 +62,34 @@ class LineGraphWidget extends StatelessWidget {
 Widget getTitles(double value, TitleMeta meta){
   Widget text;
   switch (value.toInt()){
-    case 0:
+    case 2016:
     text = const Text('2016');
     break;
-    case 1:
+    case 2017:
     text = const Text('2017');
     break;
-    case 2:
+    case 2018:
     text = const Text('2018');
     break;
-    case 3:
+    case 2019:
     text = const Text('2019');
     break;
-    case 4:
+    case 2020:
     text = const Text('2020');
     break;
-    case 5:
+    case 2021:
     text = const Text('2021');
     break;
-    case 6:
+    case 2022:
     text = const Text('2022');
     break;
-    case 7:
+    case 2023:
     text = const Text('2023');
     break;
-    case 8:
+    case 2024:
     text = const Text('2024');
     break;
-    case 9:
+    case 2025:
     text = const Text('2025');
     break;
     default:
