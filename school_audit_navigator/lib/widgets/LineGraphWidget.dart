@@ -37,10 +37,10 @@ class LineGraphWidget extends StatelessWidget {
         LineChartBarData(
           spots: data.map((point) => FlSpot(point.x, point.y)).toList(),
           isCurved: false,
-          dotData: const FlDotData(show: true),
+          dotData: FlDotData(show: true),
         ),
       ],
-        titlesData: const FlTitlesData(
+      titlesData: const FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -52,13 +52,14 @@ class LineGraphWidget extends StatelessWidget {
         topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)
         ),
         ),
-        minY: getMin(data) * .8,
+        minY: 500000,
         maxY: getMax(data) * 1.2
       )
       );
   }
-  }
-  Widget getTitles(double value, TitleMeta meta){
+}
+
+Widget getTitles(double value, TitleMeta meta){
   Widget text;
   switch (value.toInt()){
     case 2016:
