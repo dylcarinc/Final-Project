@@ -30,8 +30,18 @@ Future<List<Map<String, dynamic>>> getCollegeInfo(String id) async {
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
   return data;
 }
-Future<Map<String, double>> getCollegeDataMap(String id) async {
-  var url = Uri.parse("https://api-staging.fac.gov/federal_awards?report_id=eq.$id&select=federal_agency_prefix,amount_expended");
+Future<List<Map<String, dynamic>>> getCollegeInfofromYear(String year, String ein) async {
+  var url = Uri.parse("https://api-staging.fac.gov/general?audit_year=eq.$year&auditee_ein=eq.$ein");
+  var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
+  final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
+  return data;
+}
+Future<Map<String, double>> getCollegeDataMap(String year, String ein) async {
+  var url1 = Uri.parse("https://api-staging.fac.gov/general?audit_year=eq.$year&auditee_ein=eq.$ein");
+  var response1 = await http.get(url1, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
+  final data1 = (json.decode(response1.body) as List).cast<Map<String, dynamic>>();
+  String reportID = data1[0]['report_id'];
+  var url = Uri.parse("https://api-staging.fac.gov/federal_awards?report_id=eq.$reportID&select=federal_agency_prefix,amount_expended");
   var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
   final Map<String, double> dataMap = {};
@@ -62,3 +72,11 @@ Future<Map<String, double>> getOtherYears(String ein) async {
   }
   return dataMap;
 }
+/*Future<List<int>> getYearList(String ein) async {
+  var url = Uri.parse("https://api-staging.fac.gov/general?auditee_ein=eq.$ein&select=audit_year&order=audit_year.asc");
+  var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
+  List<Map<String, int>> data = (json.decode(response.body) as List).cast<Map<String, int>>();
+  List<int> work = data.map((map) => map['audit_year']).toList() as List<int>;
+  print("done");
+  return work;
+}*/
