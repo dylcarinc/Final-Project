@@ -10,7 +10,8 @@ import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
 class AuditPage extends StatefulWidget {
   final String? auditEIN;
   final String? auditID;
-  const AuditPage({this.auditEIN,this.auditID, super.key});
+  final String? auditYear;
+  const AuditPage({this.auditEIN,this.auditID,this.auditYear, super.key});
 
   @override
   State<AuditPage> createState() => _AuditPageState();
@@ -18,17 +19,50 @@ class AuditPage extends StatefulWidget {
 
 class _AuditPageState extends State<AuditPage> {
   final currencyFormatter = NumberFormat("#,##0.00", "en_US");
-  
+  late String dropdownValue = widget.auditYear.toString();
   @override
   Widget build(BuildContext context) {
-    print(widget.auditID.toString());
-    return FutureBuilder(
-      future: Future.wait([
-        getCollegeInfo(widget.auditID.toString()),
-        getCollegeDataMap(widget.auditID.toString()),
-        graphData(widget.auditEIN.toString())
-      ]),
-      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+  String ein = widget.auditEIN.toString();
+  String id = widget.auditID.toString();
+  String year = widget.auditYear.toString();
+    //print(widget.auditID.toString());
+    return Scaffold(
+      appBar: AppBar(title: const Text(
+              'School Audit Navigator',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            backgroundColor: const Color.fromARGB(255, 76, 124, 175),
+            elevation: 2,
+            centerTitle: true,
+      ),
+    body: Column(
+      children: [
+        DropdownButton(
+                  value: dropdownValue,
+                  items: <String>['2016','2017','2018', '2019', '2020', ' 2021', '2022', '2023','2024']
+                      .map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  ),
+                  Expanded(child: 
+        FutureBuilder(
+        future: 
+        Future.wait([
+        getCollegeInfofromYear(dropdownValue, ein),
+        getCollegeDataMap(dropdownValue,ein),
+        graphData(ein),
+        //getYearList(widget.auditEIN.toString())
+      ]), 
+      builder:
+      (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (!snapshot.hasData) {
           return const Scaffold(
             body: Center(
@@ -50,6 +84,9 @@ class _AuditPageState extends State<AuditPage> {
         }
         final List<Map<String, dynamic>> college = snapshot.data![0];
         final Map<String, double> values = snapshot.data![1];
+        if(values.isEmpty){
+          values["No Data"] = 1;
+        }
         final collegeData = college[0];
         final String acceptDate = collegeData['fac_accepted_date'];
         final int expend = collegeData['total_amount_expended'];
@@ -58,22 +95,11 @@ class _AuditPageState extends State<AuditPage> {
         final String auditor = collegeData['auditor_contact_name'];
         final String auditorContact = collegeData['auditor_email'];
         final String auditeeEIN = collegeData['auditee_ein'];
-
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'School Audit Navigator',
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-            backgroundColor: const Color.fromARGB(255, 76, 124, 175),
-            elevation: 2,
-            centerTitle: true,
-          ),
-          body: SingleChildScrollView(
+          return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
+              children: [
                 Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
@@ -224,10 +250,10 @@ class _AuditPageState extends State<AuditPage> {
                 // ),
               ],
             ),
-          ),
-        );
-      },
-    );
+          );
+  }))
+       
+  ]));
   }
 
   Widget _buildInfoRow(String label, String value, IconData icon) {

@@ -107,8 +107,9 @@ class _ResultsPageState extends State<ResultsPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => AuditPage(
-                                auditID: colleges[index]['report_id'],
                                 auditEIN: colleges[index]['auditee_ein'],
+                                auditID: colleges[index]['report_id'],
+                                auditYear: colleges[index]['audit_year'],
                               ),
                             ),
                           );
