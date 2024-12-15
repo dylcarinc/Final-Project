@@ -40,12 +40,30 @@ class LineGraphWidget extends StatelessWidget {
           dotData: FlDotData(show: true),
         ),
       ],
+      lineTouchData: LineTouchData(
+        touchTooltipData: LineTouchTooltipData(getTooltipItems: (List<LineBarSpot> touchedSpots) =>
+    touchedSpots.map((LineBarSpot touchedSpot) {
+      final textStyle = TextStyle(
+        color: touchedSpot.bar.gradient?.colors.first ??
+            touchedSpot.bar.color ??
+            Colors.blueGrey,
+        fontWeight: FontWeight.bold,
+        fontSize: 14,
+      );
+      String Tooltip = "\$" + touchedSpot.y.round().toString();
+      return LineTooltipItem(Tooltip, textStyle);
+    }).toList()
+          
+        )
+          
+        
+      ),
       titlesData: const FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 200,
             getTitlesWidget: getTitles,
           )
         ),
