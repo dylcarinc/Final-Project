@@ -215,7 +215,7 @@ class _AuditPageState extends State<AuditPage> {
                         ),
                         const SizedBox(height: 24),
                         Center(
-                          child: SizedBox(width: 400, height: 500,child:LineGraphWidget(snapshot.data![2]))
+                          child: SizedBox(width: 400, height: 350,child:LineGraphWidget(snapshot.data![2]))
                         ),
                       ],
                     ),
