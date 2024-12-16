@@ -110,6 +110,7 @@ class _ResultsPageState extends State<ResultsPage> {
                                 auditEIN: colleges[index]['auditee_ein'],
                                 auditID: colleges[index]['report_id'],
                                 auditYear: colleges[index]['audit_year'],
+                                auditName: colleges[index]['auditee_name'],
                               ),
                             ),
                           );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:school_audit_navigator/details_page.dart';
@@ -6,17 +8,18 @@ import 'package:school_audit_navigator/api.dart';
 import 'package:intl/intl.dart';
 import 'package:school_audit_navigator/objects/line_graph_data.dart';
 import 'package:school_audit_navigator/widgets/LineGraphWidget.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AuditPage extends StatefulWidget {
   final String? auditEIN;
   final String? auditID;
   final String? auditYear;
-  const AuditPage({this.auditEIN,this.auditID,this.auditYear, super.key});
+  final String? auditName;
+  const AuditPage({this.auditEIN,this.auditID,this.auditYear,this.auditName, super.key});
 
   @override
   State<AuditPage> createState() => _AuditPageState();
 }
-
 class _AuditPageState extends State<AuditPage> {
   final currencyFormatter = NumberFormat("#,##0.00", "en_US");
   late String dropdownValue = widget.auditYear.toString();
@@ -34,6 +37,10 @@ class _AuditPageState extends State<AuditPage> {
             backgroundColor: const Color.fromARGB(255, 76, 124, 175),
             elevation: 2,
             centerTitle: true,
+            actions: [IconButton(
+          onPressed: () => writeAudit(widget.auditName.toString(),dropdownValue, widget.auditEIN.toString(), widget.auditID.toString()),
+          icon: const Icon(Icons.favorite),
+        ),],
       ),
     body: Column(
       children: [
@@ -328,3 +335,40 @@ class _AuditPageState extends State<AuditPage> {
     );
   }
 }
+//https://docs.flutter.dev/cookbook/persistence/reading-writing-files
+Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+}
+Future<File> get _localFile async {
+  final path = await _localPath;
+  return File('$path/saved.txt');
+}
+Future<void> writeAudit(String name, String year, String EIN, String ID) async {
+  final path = await _localPath;
+  if (!await File('$path/saved.txt').exists()){
+    File('$path/saved.txt').create();
+  }
+    final file = await _localFile;
+    // Write the file
+    List<String> lines =  await file.readAsLines(); 
+    int index = 0;
+    bool hasLine = false;
+    int removeIndex = -1;
+    for (String line in lines){
+      if(line.contains('$name-$year')){
+        removeIndex = index;
+         hasLine = true;
+         break;
+      }
+      index ++;
+    }
+    if(removeIndex != -1){
+        lines.removeAt(index);
+         await file.writeAsString(lines.join('\n'));
+    }
+    if(!hasLine){
+      file.writeAsStringSync('$name-$year!$EIN#$ID]\n', mode: FileMode.append);
+    }
+  }

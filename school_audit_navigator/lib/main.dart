@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:school_audit_navigator/favorites.dart';
 import 'package:school_audit_navigator/results_page.dart';
 import 'package:school_audit_navigator/objects/states.dart';
 import 'package:school_audit_navigator/widgets/widgets.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(
@@ -53,6 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 76, 124, 175),
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            tooltip: 'View your favorite audits', onPressed: () { Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Favorites()));},
+      )]
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -88,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const SizedBox(height: 10.0),
                   ElevatedButton(
-                    onPressed: () => _performSearchByName(context),
+                    onPressed: () => {_performSearchByName(context)},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 78, 255, 117),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -144,4 +157,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+}
+Future<File> get _localFile async {
+  final path = await _localPath;
+  return File('$path/saved.txt');
+}
+Future<List<String>> getList() async {
+    final file = await _localFile;
+    final contents = await file.readAsString();
+    return contents.split('\n');
+
 }
