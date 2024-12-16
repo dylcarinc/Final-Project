@@ -21,6 +21,8 @@ final mockSearchResults = [
 ];
 
 void main() {
+  group('Search Results Tests', () {
+
     setUp(() {
       // Setup mock responses before each test
       TestWidgetsFlutterBinding.ensureInitialized();
@@ -64,8 +66,10 @@ void main() {
       // Also verify the dropdown options exist
       expect(find.text('AZ'), findsOneWidget);
     });
+  });
 
 
+  group('Audit Page Tests', () {
 
     testWidgets('AuditPage shows loading state', (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -130,4 +134,5 @@ void main() {
       // Verify page title
       expect(find.text('School Audit Navigator'), findsOneWidget);
     });
+  });
 }
