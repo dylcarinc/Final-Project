@@ -39,7 +39,7 @@ class _AuditPageState extends State<AuditPage> {
       children: [
         DropdownButton(
                   value: dropdownValue,
-                  items: <String>['2016','2017','2018', '2019', '2020', ' 2021', '2022', '2023','2024']
+                  items: <String>['2016','2017','2018', '2019', '2020', '2021', '2022', '2023','2024']
                       .map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -215,7 +215,7 @@ class _AuditPageState extends State<AuditPage> {
                         ),
                         const SizedBox(height: 24),
                         Center(
-                          child: SizedBox(width: 400, height: 500,child:LineGraphWidget(snapshot.data![2]))
+                          child: SizedBox(width: 400, height: 350,child:LineGraphWidget(snapshot.data![2]))
                         ),
                       ],
                     ),
