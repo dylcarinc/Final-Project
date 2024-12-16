@@ -41,6 +41,7 @@ dependencies:
   pie_chart: ^5.0.0
   fl_chart: ^0.69.2
   intl: ^0.18.0  # Use the latest version available
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
