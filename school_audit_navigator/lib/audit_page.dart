@@ -346,9 +346,13 @@ Future<File> get _localFile async {
   return File('$path/saved.txt');
 }
 Future<void> writeAudit(String name, String year, String EIN, String ID) async {
+  final path = await _localPath;
+  if (!await File('$path/saved.txt').exists()){
+    File('$path/saved.txt').create();
+  }
     final file = await _localFile;
     // Write the file
-    List<String> lines = await file.readAsLines(); 
+    List<String> lines =  await file.readAsLines(); 
     int index = 0;
     bool hasLine = false;
     int removeIndex = -1;
