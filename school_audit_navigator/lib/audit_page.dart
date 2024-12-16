@@ -37,6 +37,10 @@ class _AuditPageState extends State<AuditPage> {
             backgroundColor: const Color.fromARGB(255, 76, 124, 175),
             elevation: 2,
             centerTitle: true,
+            actions: [IconButton(
+          onPressed: () => writeAudit(widget.auditName.toString(),dropdownValue, widget.auditEIN.toString(), widget.auditID.toString()),
+          icon: const Icon(Icons.favorite),
+        ),],
       ),
     body: Column(
       children: [
@@ -55,10 +59,6 @@ class _AuditPageState extends State<AuditPage> {
                     });
                   },
                   ),
-        FloatingActionButton(
-          onPressed: () => writeAudit(widget.auditName.toString(),dropdownValue, widget.auditEIN.toString(), widget.auditID.toString()),
-          child: const Icon(Icons.favorite),
-        ),
                   Expanded(child: 
         FutureBuilder(
         future: 
