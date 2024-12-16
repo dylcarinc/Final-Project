@@ -158,6 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+// loads file used by app to save favorites
 Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 

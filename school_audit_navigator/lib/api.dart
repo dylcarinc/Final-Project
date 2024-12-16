@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:school_audit_navigator/objects/agencies.dart';
 import 'package:http/http.dart' as http;
-
+//used for the search function
 Future<List<Map<String, dynamic>>> searchColleges({bool isHigherED = false, String? state, String? name}) async {
   Uri url;
 
@@ -36,6 +36,7 @@ Future<List<Map<String, dynamic>>> getCollegeInfofromYear(String year, String ei
   final data = (json.decode(response.body) as List).cast<Map<String, dynamic>>();
   return data;
 }
+//gets college data for the pie chart
 Future<Map<String, double>> getCollegeDataMap(String year, String ein) async {
   var url1 = Uri.parse("https://api-staging.fac.gov/general?audit_year=eq.$year&auditee_ein=eq.$ein");
   var response1 = await http.get(url1, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
@@ -60,6 +61,7 @@ Future<Map<String, double>> getCollegeDataMap(String year, String ein) async {
   }
   return dataMap;
 }
+//gets other years for the line graph
 Future<Map<String, double>> getOtherYears(String ein) async {
   var url = Uri.parse("https://api-staging.fac.gov/general?auditee_ein=eq.$ein&select=audit_year,total_amount_expended&order=audit_year.asc");
   var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});
@@ -72,6 +74,7 @@ Future<Map<String, double>> getOtherYears(String ein) async {
   }
   return dataMap;
 }
+//Tried to use this to get other years of audit in the dropdown, but not working
 /*Future<List<int>> getYearList(String ein) async {
   var url = Uri.parse("https://api-staging.fac.gov/general?auditee_ein=eq.$ein&select=audit_year&order=audit_year.asc");
   var response = await http.get(url, headers: {'X-Api-Key': 'OTOlQu3kFOeDM2LwYz7S0ofa3m45FJQOhfB40VEz'});

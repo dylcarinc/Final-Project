@@ -347,6 +347,7 @@ Future<File> get _localFile async {
 }
 Future<void> writeAudit(String name, String year, String EIN, String ID) async {
   final path = await _localPath;
+  //creates file if it does not exists
   if (!await File('$path/saved.txt').exists()){
     File('$path/saved.txt').create();
   }
@@ -364,10 +365,12 @@ Future<void> writeAudit(String name, String year, String EIN, String ID) async {
       }
       index ++;
     }
+    // removes item from favorites list if item already is on it
     if(removeIndex != -1){
         lines.removeAt(index);
          await file.writeAsString(lines.join('\n'));
     }
+    //Writes favorited item to list in a string split up by special charachters
     if(!hasLine){
       file.writeAsStringSync('$name-$year!$EIN#$ID]\n', mode: FileMode.append);
     }
