@@ -1,104 +1,138 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:school_audit_navigator/main.dart'; 
+import 'package:school_audit_navigator/results_page.dart';
+import 'package:school_audit_navigator/audit_page.dart';
+import 'package:school_audit_navigator/objects/states.dart';
 
-import 'package:school_audit_navigator/audit_page.dart'; 
-import 'package:pie_chart/pie_chart.dart';
-import 'package:school_audit_navigator/details_page.dart';
+// Mock data for testing
+final mockSearchResults = [
+  {
+    'auditee_name': 'Test University',
+    'audit_year': '2023',
+    'auditee_ein': '123456789',
+    'report_id': 'TEST001'
+  },
+  {
+    'auditee_name': 'Sample College',
+    'audit_year': '2023',
+    'auditee_ein': '987654321',
+    'report_id': 'TEST002'
+  }
+];
+
 void main() {
-  testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
-    // Build the app with MyHomePage.
-    await tester.pumpWidget(const MaterialApp(
-      home: MyHomePage(title: 'School Audit Navigator'),
-    ));
+  group('Search Results Tests', () {
 
-    // Tap the 'Go' button.
-    await tester.tap(find.text('Go'));
-    await tester.pumpAndSettle();
+    setUp(() {
+      // Setup mock responses before each test
+      TestWidgetsFlutterBinding.ensureInitialized();
+    });
+    testWidgets('ResultsPage shows loading indicator initially',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ResultsPage(collegeName: 'Test University'),
+        ),
+      );
 
-    // Verify that ResultsPage is displayed by checking for its AppBar title.
-    expect(find.text('Audits Found'), findsOneWidget);
+      // Verify loading indicator is shown initially
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    });
+    testWidgets('ResultsPage shows no results message for empty criteria',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ResultsPage(),
+        ),
+      );
+
+      // Verify no search criteria message
+      expect(find.text('No search criteria provided.'), findsOneWidget);
+    });
+    testWidgets('ResultsPage displays sort dropdown', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ResultsPage(selectedState: States.al),
+        ),
+      );
+
+      // Wait for the widget to build
+      await tester.pump();
+
+      // Verify the sort dropdown exists
+      expect(find.byType(DropdownButton<String>), findsOneWidget);
+      expect(find.text('         Sort by: '), findsOneWidget);  // Updated to match exact text with spaces
+      
+      // Also verify the dropdown options exist
+      expect(find.text('AZ'), findsOneWidget);
+    });
   });
 
-testWidgets('Navigate to ResultsPage when Go button is pressed', (WidgetTester tester) async {
-  // Build the app with MyHomePage.
-  await tester.pumpWidget(const MaterialApp(
-    home: MyHomePage(title: 'School Audit Navigator'),
-  ));
 
-  // Tap the 'Go' button.
-  await tester.tap(find.text('Go'));
-  await tester.pumpAndSettle();
+  group('Audit Page Tests', () {
 
-  // Verify that ResultsPage is displayed by checking for its AppBar title.
-  expect(find.text('Audits Found'), findsOneWidget);
-});
+    testWidgets('AuditPage shows loading state', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: AuditPage(
+            auditEIN: '123456789',
+            auditID: 'TEST001',
+            auditYear: '2023',
+          ),
+        ),
+      );
 
-  //TEST RESULT
-  testWidgets('ResultsPage displays audits and navigates to AuditPage', (WidgetTester tester) async {
-    // Build ResultsPage widget.
-    await tester.pumpWidget(const MaterialApp(
-      //home: ResultsPage(),
-    ));
+      // Verify loading state
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.text('Loading audit data...'), findsOneWidget);
+    });
 
-    // Verify that the AppBar title is displayed.
-    expect(find.text('Audits Found'), findsOneWidget);
+    testWidgets('AuditPage displays year dropdown', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: AuditPage(
+            auditEIN: '123456789',
+            auditID: 'TEST001',
+            auditYear: '2023',
+          ),
+        ),
+      );
 
-    // Verify that the list contains the expected audit.
-    expect(find.text('01/23/2024 - Hendrix College'), findsOneWidget);
+      // Initial pump to build widget
+      await tester.pump();
 
-    // Tap on the audit item.
-    await tester.tap(find.text('01/23/2024 - Hendrix College'));
-    await tester.pumpAndSettle();
+      // Find the specific DropdownButton with String type
+      expect(find.byType(DropdownButton<String>), findsOneWidget);
 
-    // Verify that AuditPage is displayed.
-    expect(find.text('Hendrix College'), findsOneWidget);
+      // Verify dropdown items
+      expect(find.text('2023'), findsOneWidget);
+      
+      // Optional: Verify more dropdown values
+      final dropdownButton = tester.widget<DropdownButton<String>>(
+        find.byType(DropdownButton<String>)
+      );
+      
+      // Verify the current value matches the provided audit year
+      expect(dropdownButton.value, equals('2023'));
+    });
+
+    testWidgets('AuditPage displays main section headings',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: AuditPage(
+            auditEIN: '123456789',
+            auditID: 'TEST001',
+            auditYear: '2023',
+          ),
+        ),
+      );
+
+      // Allow frame to be pumped
+      await tester.pump();
+
+      // Verify page title
+      expect(find.text('School Audit Navigator'), findsOneWidget);
+    });
   });
-
-  //TEST AUDITPAGE
-  testWidgets('AuditPage displays audit details and pie chart', (WidgetTester tester) async {
-    // Build AuditPage widget.
-    await tester.pumpWidget(const MaterialApp(
-      home: AuditPage(),
-    ));
-
-    // Verify that the AppBar title is displayed.
-    expect(find.text('Hendrix College'), findsOneWidget);
-
-    // Verify that audit details are displayed.
-    expect(find.text('FAC Acceptance Date: 01/23/2024'), findsOneWidget);
-    expect(find.text('Total Federal Expenditure: \$7,772,859'), findsOneWidget);
-    expect(find.text('Auditee: Shawn Mathis, mathis@hendrix.edu'), findsOneWidget);
-    expect(find.text('Auditor: Corey Jennings, corey.jennings@forvis.com'), findsOneWidget);
-
-    // Verify that the PieChart is displayed.
-    expect(find.byType(PieChart), findsOneWidget);
-
-    // Verify that 'More Info' button is present and navigates to DetailsPage.
-    expect(find.text('More Info'), findsOneWidget);
-
-    // Tap the 'More Info' button.
-    await tester.tap(find.text('More Info'));
-    await tester.pumpAndSettle();
-
-    // Verify that DetailsPage is displayed.
-    expect(find.text('Federal Spending on'), findsOneWidget);
-  });
-
-  testWidgets('DetailsPage displays expenditure details', (WidgetTester tester) async {
-    // Build DetailsPage widget.
-    await tester.pumpWidget(const MaterialApp(
-      home: Detailspage(),
-    ));
-
-    // Verify that the AppBar title is displayed.
-    expect(find.text('Federal Spending on'), findsOneWidget);
-
-    // Verify that expenditure details are displayed.
-    expect(find.text('Total Expenditure: \$7,772,859'), findsOneWidget);
-    expect(find.text('\$1,120,000 - Specific Instance'), findsOneWidget);
-    expect(find.text('\$960,400 - Specific Instance'), findsOneWidget);
-    expect(find.text('\$610,530 - Specific Instance'), findsOneWidget);
-  });
-
 }
