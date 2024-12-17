@@ -6,4 +6,4 @@ Jack Smith: Unit Tester. I created unit tests for major components of our applic
 
 Dylan Carter: Integration Tester. I will work on making the API for the database work with the app and troubleshoot issues with it. I will talk with the people in my group so we have a shared vision for the app.
 
-Jayden Grisby: Beta Test Organizer. I will organize the Beta Tests for the app.
+Jayden Grisby: Beta Test Organizer. I worked with the beta test group to discover bugs in the app and also to implement changes suggested by them. I created the more details page before it was scrapped and afterwards worked mainly on getting the line graph to look nice and fixing small bugs that cropped up in the app.
